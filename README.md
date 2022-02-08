@@ -9,7 +9,7 @@ This app was built reflecting the current situation of Republic Democratic of Co
 * make sure you have  SQL Express installed in your machine to handle the connection to the DataBase.
 * NPM install FireBase version 8.7.1 you may have issues with different versions in this project.
 * Last but not least you will eventually need to setup an account with FireBase if you don't have one and create a new project so you can have the following: Web Api, create users with email and Password, firebaseUserId.
-* One more thing 😄, you may need to insert those fireBase data into the SQL Server.
+* One more thing, you may need to insert those fireBase data into the SQL Server.
 
 
 ## Tech Stack
@@ -23,4 +23,4 @@ This app was built reflecting the current situation of Republic Democratic of Co
 * FireBase
  
  ## Contributions
- Contributions are more than Welcome, just don't hack me I may hack you back with HTML6 😅.
+ Contributions are more than Welcome.
