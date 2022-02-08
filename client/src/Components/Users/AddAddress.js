@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import DataManager from "./UsersDataManager";
 import Button from "@mui/material/Button";
-import "./employerForm.css";
 
-export const Postaddress = () => {
+export const ADDAddress = () => {
   const [address, setAddress] = useState({
-    company_Name: "",
-    service_Type: "",
-    city: "",
-    description: "",
-    zip_Code: "",
+    street: "",
+    apt: "",
+    state: "",
+    zipCode: "",
   });
 
   const history = useHistory();
@@ -29,50 +27,50 @@ export const Postaddress = () => {
 
   const handleSaveButton = (event) => {
     event.preventDefault();
-    DataManager.addAddress(address).then(() =>
-      history.push("/sent_invitations")
-    );
-    setAddress("");
+    DataManager.addAddress(address)
+      .then(DataManager.getUserProfile())
+      .then(() => history.push("/Account"));
   };
 
   return (
     <div className="send_invitations">
-      <h2>Request for Qualified Recruiters </h2>
+      <h2>Add Address </h2>
 
       <form>
-        <label>Company Name</label>
+        <label>Street</label>
         <input
-          className="send_input"
+          className="Street"
           type="text"
-          id="company_Name"
-          value={address.company_Name}
+          id="street"
+          value={address.street}
           onChange={HandleInputAndpost}
         />
-        <label>Service Type</label>
+        <label>Apt</label>
         <input
-          className="send_input"
+          className="Apt"
           type="text"
-          id="service_Type"
-          value={address.service_Type}
+          id="apt"
+          value={address.apt}
           onChange={HandleInputAndpost}
         />
-        <label>City</label>
+        <label>State</label>
         <input
-          className="send_input"
+          className="State"
           type="text"
-          id="city"
-          value={address.city}
+          id="state"
+          value={address.state}
           onChange={HandleInputAndpost}
         />
-
-        <textarea
+        <label>Zip Code</label>
+        <input
           rows="4"
           cols="50"
-          placeholder="Description"
+          placeholder="zipCode"
           type="text"
-          id="description"
-          value={address.description}
-          onChange={HandleInputAndpost}></textarea>
+          id="zipCode"
+          value={address.zipCode}
+          onChange={HandleInputAndpost}
+        />
         <div className="center-btn-employer-Service-Post">
           <Button
             className="button-style"
@@ -84,7 +82,7 @@ export const Postaddress = () => {
             className="button-style"
             style={{ backgroundColor: "red" }}
             variant="contained"
-            onClick={() => history.push("/")}>
+            onClick={() => history.push("/Account")}>
             Cancel ❌
           </Button>
         </div>

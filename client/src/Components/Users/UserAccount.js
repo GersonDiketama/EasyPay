@@ -61,7 +61,9 @@ const UserAccount = () => {
         ))}
       </div>
       <div>
-        <Button variant="contained">
+        <Button
+          variant="contained"
+          onClick={() => history.push(`/AddAddress/${user.id}`)}>
           <AddIcon />
           Add Address
         </Button>

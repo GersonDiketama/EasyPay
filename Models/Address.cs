@@ -12,6 +12,7 @@ namespace EasyPay.Models
         public int  Apt { get; set; }
         public int ZipCode { get; set; }
         public string state { get; set; }  
+       
         public UserProfile UserProfile { get; set; } 
 
         public UserProfileAddress UserProfileAddress { get; set; }

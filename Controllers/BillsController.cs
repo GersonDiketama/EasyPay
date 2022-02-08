@@ -36,7 +36,7 @@ namespace EasyPay.Controllers
             return CreatedAtAction("Get", new { id = bill.Id }, bill);
         }
 
-        [HttpPut("UpdatePaidBill")]
+        [HttpPut("UpdatePaidBill/{id}")]
         public ActionResult UpdatePaidBill(int id)
         {
             

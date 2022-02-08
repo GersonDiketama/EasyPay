@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import UsersView from "../Users/UsersView";
+import AdminView from "../Admin/AdminView";
 import { onLoginStatusChange } from "../../modules/AuthManager";
 const EasyPayView = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -22,6 +23,9 @@ const EasyPayView = () => {
     <div>
       <Route path="/">
         <UsersView isLoggedIn={isLoggedIn} />
+      </Route>
+      <Route>
+        <AdminView isLoggedIn={isLoggedIn} />
       </Route>
     </div>
   );

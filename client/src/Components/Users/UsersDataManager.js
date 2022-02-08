@@ -6,30 +6,64 @@ const editAdressURL = "/api/Address/UpdateAddress";
 const getAddressById = "/api/Address/GetAddressById";
 const deleteURL = "/api/Address";
 const addAddress = "/api/Address";
+const updateBillUrl = "/api/Bills/UpdatePaidBill";
 
 export const DataManager = {
   deleteAddress: (addressId) => {
-    return fetch(`${deleteURL}/${addressId}`, {
-      method: "DELETE",
-    }).then((res) => res.json());
+    return getToken().then((token) => {
+      return fetch(`${deleteURL}/${addressId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    });
+  },
+
+  updatePaidBill: (bill) => {
+    return getToken().then((token) => {
+      return fetch(`${updateBillUrl}/${bill.id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    });
   },
 
   addAddress: (address) => {
-    return fetch(addAddress, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(address),
+    return getToken().then((token) => {
+      return fetch(addAddress, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(address),
+      }).then((res) => res.json());
     });
   },
 
   getBills: () => {
-    return fetch(`${billurl}/GetAllBills`).then((res) => res.json());
+    return getToken().then((token) => {
+      return fetch(`${billurl}/GetAllBills`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json());
+    });
   },
 
   getBiilById: (id) => {
-    return fetch(`${billurl}/GetBillById/${id}`).then((res) => res.json());
+    return getToken().then((token) => {
+      return fetch(`${billurl}/GetBillById/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json());
+    });
   },
 
   getUserProfile: () => {
@@ -44,7 +78,14 @@ export const DataManager = {
   },
 
   getAddress: () => {
-    return fetch(addressUrl).then((res) => res.json());
+    return getToken().then((token) => {
+      return fetch(`${addressUrl}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json());
+    });
   },
 
   getAddressId: (id) => {
@@ -53,14 +94,14 @@ export const DataManager = {
 
   editAddress: (address) => {
     return getToken().then((token) => {
-      return fetch(`${editAdressURL}/${address}`, {
+      return fetch(`${editAdressURL}/${address.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(address),
-      }).then((res) => res.json());
+      });
     });
   },
 };

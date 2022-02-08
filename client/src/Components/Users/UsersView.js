@@ -7,6 +7,8 @@ import UserAccount from "./UserAccount";
 import Register from "../Register";
 import Login from "../Login";
 import EditAddress from "./EditAddress";
+import { ADDAddress } from "./AddAddress";
+import PayBill from "./PayBill";
 
 const UsersView = ({ isLoggedIn }) => {
   return (
@@ -26,6 +28,13 @@ const UsersView = ({ isLoggedIn }) => {
       </Route>
       <Route path="/EditAddress/:addressId(\d+)/Edit">
         {isLoggedIn ? <EditAddress /> : <Redirect to="login" />}
+      </Route>
+      <Route exact path="/:AddAddress/(\d+)">
+        {isLoggedIn ? <ADDAddress /> : <Redirect to="login" />}
+      </Route>
+
+      <Route path="/api/Bills/:billId(\d+)/makePayment">
+        {isLoggedIn ? <PayBill /> : <Redirect to="login" />}
       </Route>
 
       <Route exact path="/login">

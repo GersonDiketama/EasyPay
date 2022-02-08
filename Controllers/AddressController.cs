@@ -2,18 +2,23 @@
 using System;
 using EasyPay.Models;
 using EasyPay.Repositories;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EasyPay.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AddressController : ControllerBase
     {
         private readonly IAddressRepository _addressRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
         public AddressController(IAddressRepository billRepository, IUserProfileRepository userProfileRepository)
         {
             _addressRepository = billRepository;
+            _userProfileRepository = userProfileRepository;
 
         }
 
@@ -23,8 +28,8 @@ namespace EasyPay.Controllers
             return Ok(_addressRepository.GetAllAddress());
         }
 
-        [HttpGet("GetAddressById")]
-        public IActionResult GetBillById(int id)
+        [HttpGet("GetAddressById/{id}")]
+        public IActionResult GetAddressById(int id)
         {
             return Ok(_addressRepository.GetAddressById(id));
         }
@@ -33,15 +38,17 @@ namespace EasyPay.Controllers
         public IActionResult Post(Models.Address address)
         {
             
+            
             _addressRepository.AddAddress(address);
-            _addressRepository.AddUserProfileAddress(address.Id, address.UserProfile.Id);
-            return CreatedAtAction("Get", new { id = address.Id }, address);
+            
+            _addressRepository.AddUserProfileAddress(address.Id, GetCurrentUserProfile().Id);
+            return CreatedAtAction("GetAddressById", new { id = address.Id }, address);
             
         }
+         
 
 
-
-        [HttpPut("UpdateAddress")]
+        [HttpPut("UpdateAddress/{id}")]
         public IActionResult Put(int id, Address address)
         {
             if (id != address.Id)
@@ -62,7 +69,12 @@ namespace EasyPay.Controllers
         }
 
 
-
+        
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
 
 
 

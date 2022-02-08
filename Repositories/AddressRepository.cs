@@ -42,7 +42,8 @@ namespace EasyPay.Repositories
                             Street = reader.GetString(reader.GetOrdinal("Street")),
                             Apt = reader.GetInt32(reader.GetOrdinal("Apt")),
                             state = reader.GetString(reader.GetOrdinal("State")),
-                            
+                            ZipCode = reader.GetInt32(reader.GetOrdinal("ZipCode"))
+
 
 
                         };
@@ -102,9 +103,9 @@ left join UserProfile UP on UA.UserProfileId = UP.Id
 
                                 UserProfileAddress = new UserProfileAddress
                                 {
-                                    Id = reader.GetInt32(reader.GetOrdinal("UserProfileAddressId")),
-                                    AddressId = reader.GetInt32(reader.GetOrdinal("AddressId")),
-                                    UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId"))
+                                    Id = DbUtils.GetInt(reader, "UserProfileAddressId"),
+                                    AddressId = DbUtils.GetInt(reader, "AddressId"),
+                                    UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 }
 
 
@@ -192,7 +193,10 @@ left join UserProfile UP on UA.UserProfileId = UP.Id
 
         }
 
+        //public List<Address> GetAddress()
+        //{
 
+        //}
 
         public void Delete(int id)
         {

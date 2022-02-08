@@ -147,7 +147,7 @@ left join Address A on A.Id = b.AddressId
                         SET 
                             Amount = @amount, 
                             AddressId = @addressId, 
-                            IsaPaid = @ispaid, 
+                            IsPaid = @ispaid 
                           
                        WHERE Id = @id";
 
