@@ -1,7 +1,7 @@
 # EasyPay
 
 ## Description
-This app was built reflecting the current situation of Republic Democratic of Congo, where the population walks more than 3 miles to pay electrical bills, and usually have to deal with long wait line on arrival. This App solve the issue by allowing the user the to pay the bill without leaving their comfort.
+This app was built reflecting the current situation of Republic Democratic of Congo, where the population walks more than 3 miles to pay electrical bills, and usually have to deal with long wait line on arrival. This App solve the issue by allowing the user to pay the bill without leaving their comfort.
 
 ## How to use the App
 * Clone this Project
