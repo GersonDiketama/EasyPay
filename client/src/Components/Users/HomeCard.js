@@ -9,18 +9,28 @@ const HomeCard = ({ bill }) => {
     <div>
       <h5>Payment Due on 02/20/2022</h5>
       <p>
-        Amount: <b>{bill.amount / 3}</b>
+        {bill.isPaid == false ? (
+          <>
+            <b>Amount: ${bill.amount / 3}</b>
+          </>
+        ) : (
+          <b>Amount: $0</b>
+        )}
       </p>
       <p>ADDRESS: {bill.address.street}</p>
       <p>Apt: {bill.address.apt}</p>
       <p>ZipCode: {bill.address.zipCode}</p>
 
-      <Button
-        variant="contained"
-        style={{ backgroundColor: "green" }}
-        onClick={() => history.push(`/api/Bills/${bill.id}/makePayment`)}>
-        Make Payment
-      </Button>
+      {bill.isPaid == false ? (
+        <Button
+          variant="contained"
+          style={{ backgroundColor: "green" }}
+          onClick={() => history.push(`/api/Bills/${bill.id}/makePayment`)}>
+          Make Payment
+        </Button>
+      ) : (
+        <Button variant="contained">Bill Paid ✅</Button>
+      )}
     </div>
   );
 };

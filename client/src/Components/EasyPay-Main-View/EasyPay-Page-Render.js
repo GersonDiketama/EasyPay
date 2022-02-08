@@ -23,10 +23,9 @@ const EasyPayView = () => {
     <div>
       <Route path="/">
         <UsersView isLoggedIn={isLoggedIn} />
-      </Route>
-      <Route>
         <AdminView isLoggedIn={isLoggedIn} />
       </Route>
+      <Route></Route>
     </div>
   );
 };

@@ -5,8 +5,12 @@ import { logout } from "../../modules/AuthManager";
 const AdminNavBar = () => {
   return (
     <div>
-      <Link to="/">Manage Bills</Link>
-      <Link to="/">Account</Link>
+      <li>
+        <Link to="/">Manage Bills</Link>
+      </li>
+      <li>
+        <Link to="/Account">Account</Link>
+      </li>
       <button onClick={logout}>LogOut</button>
     </div>
   );

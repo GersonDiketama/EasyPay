@@ -1,4 +1,7 @@
+import { getToken } from "../../modules/AuthManager";
+
 const addressByIdURL = "/api/Address/GetAddressById";
+
 const AddBillURL = "/api/Bills";
 
 export const AdminDataManager = {
