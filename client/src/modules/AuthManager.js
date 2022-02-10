@@ -1,9 +1,15 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import DataManager from "../Components/Users/UsersDataManager";
 
 const _apiUrl = "/api/userprofile";
 
 const _doesUserExist = (firebaseUserId) => {
+  DataManager.getUserByFireBaseUserId(firebaseUserId).then((user) => {
+    localStorage.setItem("LoggedInUserId", user.id);
+    localStorage.setItem("IsAdmin", user.isAdmin);
+  });
+
   return getToken().then((token) =>
     fetch(`${_apiUrl}/DoesUserExist/${firebaseUserId}`, {
       method: "GET",

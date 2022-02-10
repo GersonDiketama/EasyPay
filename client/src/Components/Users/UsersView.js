@@ -22,7 +22,7 @@ const UsersView = ({ isLoggedIn }) => {
         {isLoggedIn ? <Home /> : <Redirect to="login" />}
       </Route>
 
-      <Route path="/Account">
+      <Route exact path="/Account">
         {isLoggedIn ? <NavBar /> : <Redirect to="/login" />}
         {isLoggedIn ? <UserAccount /> : <Redirect to="login" />}
       </Route>
@@ -35,10 +35,6 @@ const UsersView = ({ isLoggedIn }) => {
 
       <Route path="/api/Bills/:billId(\d+)/makePayment">
         {isLoggedIn ? <PayBill /> : <Redirect to="login" />}
-      </Route>
-
-      <Route exact path="/login">
-        <Login />
       </Route>
 
       <Route exact path="/register">

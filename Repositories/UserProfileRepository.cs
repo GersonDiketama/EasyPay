@@ -75,10 +75,8 @@ left join Address A on A.Id = UA.AddressId
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                       select up.Id, up.FireBaseId, up.FirstName, up.LastName,up.Email,up.IsAdmin, UA.Id UserProfileAddressId, UA.AddressId, UA.UserProfileId, A.Id AddressId, A.Street, A.Apt, A.State, A.ZipCode  
+                       select up.Id, up.FireBaseId, up.FirstName, up.LastName,up.Email,up.IsAdmin
 from UserProfile up
-left join UserProfileAddress UA on UA.UserProfileId = up.Id
-left join Address A on A.Id = UA.AddressId
                          WHERE FireBaseId = @FireBaseId";
 
                     DbUtils.AddParameter(cmd, "@FireBaseId", firebaseUserId);
@@ -96,24 +94,7 @@ left join Address A on A.Id = UA.AddressId
                             LastName = DbUtils.GetString(reader, "LastName"),                     
                             Email = DbUtils.GetString(reader, "Email"),
                             IsAdmin = DbUtils.GetBool(reader, "IsAdmin"),
-                            UserProfileAddress = new UserProfileAddress
-                            {
-                                Id = DbUtils.GetInt(reader, "UserProfileAddressId"),
-                                AddressId = DbUtils.GetInt(reader, "AddressId"),
-                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
-                            },
-
-                            Address = new Models.Address()
-                            {
-
-                                Id = DbUtils.GetInt(reader, "AddressId"),
-                                Street = DbUtils.GetString(reader, "Street"),
-                                Apt = DbUtils.GetInt(reader, "Apt"),
-                                state = DbUtils.GetString(reader, "State"),
-                                ZipCode = DbUtils.GetInt(reader, "ZipCode")
-
-
-                            }
+                            
 
                         };
                     }
@@ -233,12 +214,12 @@ left join Address A on A.Id = UA.AddressId
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, FirstName, LastName, DisplayName, 
+                    cmd.CommandText = @"INSERT INTO UserProfile (FireBaseId, FirstName, LastName, DisplayName, 
                                                                  Email, CreateDateTime, ImageLocation, UserTypeId)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@FirebaseUserId, @FirstName, @LastName, @DisplayName, 
+                                        VALUES (@FireBaseId, @FirstName, @LastName, @DisplayName, 
                                                 @Email, @CreateDateTime, @ImageLocation, @UserTypeId)";
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FireBaseId);
+                    DbUtils.AddParameter(cmd, "@FireBaseId", userProfile.FireBaseId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);

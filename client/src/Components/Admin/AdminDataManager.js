@@ -1,5 +1,5 @@
 import { getToken } from "../../modules/AuthManager";
-
+import { userProfileUrl } from "../Users/UsersDataManager";
 const addressByIdURL = "/api/Address/GetAddressById";
 
 const AddBillURL = "/api/Bills";

@@ -1,0 +1,19 @@
+.AdminAddressCard {
+  width: 20%;
+  margin: 0px 0px 20px 0px;
+}
+
+.AdminNavBar {
+  height: 40px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+  background-color: aqua;
+}
+
+.AdminNavBar li,
+a {
+  list-style: none;
+  text-decoration: none;
+}

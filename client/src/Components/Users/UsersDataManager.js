@@ -20,6 +20,17 @@ export const DataManager = {
     });
   },
 
+  getUserByFireBaseUserId: (fireId) => {
+    return getToken().then((token) => {
+      return fetch(`${userProfileUrl}/${fireId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json());
+    });
+  },
+
   updatePaidBill: (bill) => {
     return getToken().then((token) => {
       return fetch(`${updateBillUrl}/${bill.id}`, {
@@ -69,6 +80,17 @@ export const DataManager = {
   getUserProfile: () => {
     return getToken().then((token) => {
       return fetch(`${userProfileUrl}/GetUserProfile`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json());
+    });
+  },
+
+  getAllUsers: () => {
+    return getToken().then((token) => {
+      return fetch(`${userProfileUrl}/GetAllUsers`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
