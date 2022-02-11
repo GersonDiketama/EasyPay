@@ -53,13 +53,13 @@ export const AddBill = () => {
             className="button-style"
             variant="contained"
             onClick={handleSaveButton}>
-            Send Request
+            Add Bill
           </Button>
           <Button
             className="button-style"
             style={{ backgroundColor: "red" }}
             variant="contained"
-            onClick={() => history.push("/Account")}>
+            onClick={() => history.push("/")}>
             Cancel ❌
           </Button>
         </div>

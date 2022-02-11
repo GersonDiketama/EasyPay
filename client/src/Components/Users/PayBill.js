@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import DataManager from "./UsersDataManager";
-import HomeCard from "./HomeCard";
+import Button from "@mui/material/Button";
 import {
   useHistory,
   useParams,
@@ -28,14 +28,12 @@ const PayBill = () => {
       addressId: bill.addressId,
     };
 
-    DataManager.updatePaidBill(billToUpdate).then(() =>
-      history.push("/Account")
-    );
+    DataManager.updatePaidBill(billToUpdate).then(() => history.push("/Bills"));
   };
 
   return (
     <div>
-      <button onClick={updateBill}>Pay Bill</button>
+      <Button onClick={updateBill}>Pay Bill</Button>
     </div>
   );
 };

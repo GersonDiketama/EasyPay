@@ -17,3 +17,7 @@ a {
   list-style: none;
   text-decoration: none;
 }
+
+.userAccountBtn button {
+  margin: 1px;
+}

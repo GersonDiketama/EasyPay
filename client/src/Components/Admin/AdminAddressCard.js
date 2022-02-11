@@ -1,27 +1,24 @@
 import React from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import DataManager from "../Users/UsersDataManager";
 import Typography from "@mui/material/Typography";
 import "../Users/main.css";
 const AdminAddressCard = ({ addresses }) => {
-  const history = useHistory();
+  const [bills, setBills] = useState([]);
 
-  // return (
-  //   <div>
-  //     <h1>{addresses.street}</h1>
-  //     <p>{addresses.apt}</p>
-  //     <p>{addresses.state}</p>
-  //     <p>{addresses.zipCode}</p>
-  //     <p>{}</p>
-  //     <button onClick={() => history.push(`addressId/${addresses.id}/AddBill`)}>
-  //       Add Bill
-  //     </button>
-  //   </div>
-  // );
+  const getBill = () => {
+    DataManager.getBills().then((res) => setBills(res));
+  };
+
+  useEffect(() => getBill(), []);
+
+  const history = useHistory();
 
   const bull = (
     <Box
@@ -47,7 +44,22 @@ const AdminAddressCard = ({ addresses }) => {
           Zip Code: {addresses.zipCode}
           <br />
         </Typography>
+
+        <Typography>
+          {bills.map((bill) => (
+            <div key={bill.id}>
+              {bill?.addressId == addresses.id ? (
+                <Typography>
+                  Bill paid in the Amount of <b>${bill.amount}</b>
+                </Typography>
+              ) : (
+                ""
+              )}
+            </div>
+          ))}
+        </Typography>
       </CardContent>
+
       <CardActions>
         <Button
           variant="contained"
