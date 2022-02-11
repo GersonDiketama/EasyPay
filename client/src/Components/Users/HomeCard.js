@@ -34,6 +34,13 @@ const HomeCard = ({ bill }) => {
         </Typography>
         <br />
         <Typography>ZipCode: {bill.address.zipCode}</Typography>
+        <Typography>
+          {bill.isPaid == false ? (
+            <span>Amount: {bill.amount}</span>
+          ) : (
+            <span>Amount: $0</span>
+          )}{" "}
+        </Typography>
       </CardContent>
       <CardActions>
         {bill.isPaid == false ? (
