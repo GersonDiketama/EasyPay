@@ -53,7 +53,10 @@ const AdminAccountList = () => {
         <Typography variant="body2"></Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained">
+        <Button
+          style={{ backgroundColor: "orange" }}
+          size="small"
+          variant="contained">
           Edit
         </Button>
       </CardActions>

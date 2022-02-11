@@ -12,7 +12,10 @@ const AdminNavBar = () => {
       <li>
         <Link to="/Account">Account</Link>
       </li>
-      <Button variant="contained" onClick={logout}>
+      <Button
+        style={{ backgroundColor: "white", color: "orange" }}
+        variant="contained"
+        onClick={logout}>
         LogOut
       </Button>
     </div>

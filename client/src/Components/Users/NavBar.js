@@ -34,7 +34,10 @@ const NavBar = () => {
           <Link to="/Account">Account</Link>
         </li>
         <li>
-          <Button variant="contained" onClick={logout}>
+          <Button
+            style={{ backgroundColor: "white", color: "orange" }}
+            variant="contained"
+            onClick={logout}>
             Logout
           </Button>
         </li>

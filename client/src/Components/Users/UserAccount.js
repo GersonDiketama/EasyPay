@@ -60,6 +60,17 @@ const UserAccount = () => {
       <Typography variant="h5" component="div">
         Email: {user?.email}
       </Typography>
+      <Button
+        className="userAccountBtn"
+        style={{
+          marginTop: "10px",
+          marginBottom: "10px",
+          backgroundColor: "orange",
+        }}
+        variant="contained"
+        onClick={() => history.push(`/AddAddress/${user.id}`)}>
+        Add Address
+      </Button>
 
       {address.map((A) => (
         <Card key={A.id} className="AdminAddressCard userAccountBtn">
@@ -68,12 +79,14 @@ const UserAccount = () => {
           <Typography>State: {A.state}</Typography>
           <Typography>ZipCode: {A?.zipCode}</Typography>
           <Button
+            style={{ backgroundColor: "orange" }}
             className="userAccountBtn"
             variant="contained"
             onClick={() => history.push(`/EditAddress/${A.id}/Edit`)}>
             Edit
           </Button>
           <Button
+            style={{ backgroundColor: "orange" }}
             className="userAccountBtn"
             variant="contained"
             onClick={() => deleteAddress(A.id)}>

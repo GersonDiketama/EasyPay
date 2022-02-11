@@ -44,7 +44,9 @@ const HomeCard = ({ bill }) => {
             Make Payment
           </Button>
         ) : (
-          <Button variant="contained">Bill Paid ✅</Button>
+          <Button style={{ backgroundColor: "orange" }} variant="contained">
+            Bill Paid ✅
+          </Button>
         )}
       </CardActions>
     </Card>
